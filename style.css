@@ -12,3 +12,11 @@ display: inline;
 #start,#status,#restart{
     font-size: 22px;
 }
+h4{
+    background-color:darkgray;
+    line-height: 2;
+    margin: 0px;
+}
+.modal-dialog{
+    width: 90%;
+}
