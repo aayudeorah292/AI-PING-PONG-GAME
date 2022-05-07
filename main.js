@@ -1,3 +1,7 @@
+rightwristX=0;
+rightwristY=0;
+scorerightwrist=0;
+gamestatus="";
 
 /*created by prashant shukla */
 
@@ -28,12 +32,18 @@ function setup(){
   video.size(700,600);
   video.hide();
   poseNet=ml5.poseNet(video,modalLoaded);
+  poseNet.on("pose",gotposes);
 }
 function modalLoaded(){
   console.log( "modal Loaded");
 }
-
-
+function gotposes(results){
+  if (results.length>0) {
+    rightwristX=results[0].pose.rightWrist.x;
+    rightwristY=results[0].pose.rightWrist.y;
+    scorerightwrist=results[0].pose.keypoints[10].score;
+  }
+}
 
 function draw(){
 
@@ -47,6 +57,11 @@ function draw(){
  fill("black");
  stroke("black");
  rect(0,0,20,700);
+ if (scorerightwrist > 0.2) {
+   fill("red");
+   stroke("red");
+   circle(rightwristX,rightwristY,30);
+ }
  
    //funtion paddleInCanvas call 
    paddleInCanvas();
