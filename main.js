@@ -24,7 +24,10 @@ var ball = {
     dx:3,
     dy:3
 }
-
+function startGame(){
+  gamestatus="start";
+  document.getElementById("status").innerHTML="Game is loading";
+}
 function setup(){
   var canvas =  createCanvas(700,600);
   canvas.parent("canvas");
@@ -47,6 +50,8 @@ function gotposes(results){
 
 function draw(){
 
+if (gamestatus=="start") {
+  
  background(0);
  image(video,0,0,700,600); 
 
@@ -57,6 +62,7 @@ function draw(){
  fill("black");
  stroke("black");
  rect(0,0,20,700);
+
  if (scorerightwrist > 0.2) {
    fill("red");
    stroke("red");
@@ -72,7 +78,7 @@ function draw(){
     strokeWeight(0.5);
    paddle1Y = mouseY; 
    rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
-   
+  
    
     //pc computer paddle
     fill("#FFA500");
@@ -90,6 +96,7 @@ function draw(){
    
    //function move call which in very important
     move();
+}
 }
 
 
